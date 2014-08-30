@@ -1,0 +1,89 @@
+# Thomas Esser, Copyright 1998, 1999. Public domain.
+# fmtutil.cnf: configuration file for fmtutil.
+#
+# ------------------------------------------------------
+# Changed by ak for Web2C-2010 for Win32 (2010/06/02).
+# ------------------------------------------------------
+#
+# Customize this file to your needs, e.g.
+#   - remove or uncomment formats that you don't need
+#   - add your own formats
+#   - change default engine / flags for standard formats
+#
+# Some notes:
+#   1) tex and amstex just load hyphen.tex. No customization.
+#   You can have you own customized (via babel's hyphen.cfg)
+#   formats on top of plain by using "bplain.tex" instead of
+#   plain.tex (see e.g. bplain.ini file for bplain format).
+#
+#   2) etex loads language.def, not language.dat.
+#
+#   3) The hard link to or copy of the right engines (e.g. bplain -> tex)
+#      should be made "by hand".
+#
+# The format of the table is:
+#
+# format    engine     pattern-files   arguments
+#
+#
+# Standard formats (plain, latex) with all engines:
+#
+tex tex - --enc --translate-file=cp227.tcx tex.ini
+eplain tex - --translate-file=cp227.tcx eplain.ini
+etex pdftex language.def --etex --translate-file=cp227.tcx etex.ini
+latex pdftex language.dat --etex --translate-file=cp227.tcx latex.ini
+xetex xetex language.def --etex xetex.ini
+xelatex xetex language.dat --etex xelatex.ini
+#
+luatex luatex language.def,language.dat.lua --etex luatex.ini
+dviluatex luatex language.def,language.dat.lua --etex dviluatex.ini
+lualatex luatex language.dat,language.dat.lua --etex lualatex.ini
+dvilualatex luatex language.dat,language.dat.lua --etex dvilualatex.ini
+#
+pdftex pdftex language.def --etex --translate-file=cp227.tcx pdftex.ini
+pdflatex pdftex language.dat --etex --translate-file=cp227.tcx pdflatex.ini
+#
+omega aleph language.dat --etex omega.ini
+lambda aleph language.dat --etex lambda.ini
+aleph aleph language.def --etex aleph.ini
+lamed aleph language.dat --etex lamed.ini
+#
+# Context formats:
+cont-en pdftex cont-usr.tex --etex --8bit cont-en.ini
+cont-en xetex cont-usr.tex --etex cont-en.ini
+cont-en eptex cont-usr.tex --kanji=utf8 --kanji-internal=sjis --etex cont-ja.ini
+cont-en euptex cont-usr.tex --kanji-internal=uptex --etex cont-up.ini
+#
+#
+mptopdf pdftex - --etex --translate-file=cp227.tcx mptopdf.ini
+#
+# Other formats: (--ak)
+#
+ptex ptex - --kanji-internal=sjis ptex.ini
+lplatex ptex language.ptx --kanji-internal=sjis platex.ini
+platex eptex language.ptx --kanji-internal=sjis *platex.ini
+eptex eptex language.def --kanji-internal=sjis *eptex.ini
+ptexsis ptex - --kanji-internal=sjis ptexsis.ini
+texsis tex - --translate-file=cp227.tcx texsis.ini
+jlatex jtex language.jtx jlatex.ini
+jtex jtex - jtex.ini
+lambdaj aleph language.dat --etex lambdaj.ini
+omegaj aleph - --etex omegaj.ini
+#
+# metafont
+#
+mf mf-nowin - --translate-file=cp227.tcx mf.ini
+#
+# uptex
+#
+uplatex euptex language.ptx --kanji-internal=uptex *uplatex.ini
+uptex uptex - --kanji-internal=uptex uptex.ini
+euptex euptex language.def --kanji-internal=uptex *euptex.ini
+#
+# xmltex    pdftex language.dat "&latex"    xmltex.ini
+# pdfxmltex pdftex language.dat "&pdflatex" pdfxmltex.ini
+#
+# luajittex
+#
+luajittex luajittex language.def,language.dat.lua -etex luatex.ini
+luajitlatex luajittex language.dat,language.dat.lua -etex lualatex.ini
